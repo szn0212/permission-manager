@@ -1,0 +1,27 @@
+<h1>任务列表</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>内容</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= task.content %></td>
+        <td><%= link_to '详情', task %></td>
+        <td><%= link_to '编辑', edit_task_path(task) %></td>
+        <td><%= link_to '删除', task, method: :delete, data: { confirm: '你确定要删除吗？' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to '新建任务', new_task_path %>
