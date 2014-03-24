@@ -27,7 +27,7 @@ admin.permissions << permission
 manager.permissions << permission
 employee.permissions << permission
 
-permission = Permission.create(action: 'read', subject: 'User', description: '管理用户')
+permission = Permission.create(action: 'manage', subject: 'User', description: '管理用户')
 admin.permissions << permission
 manager.permissions << permission
 
