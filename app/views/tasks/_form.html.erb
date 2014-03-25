@@ -12,14 +12,10 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :content %><br>
-    <%= f.text_field :content %>
-  </div>
-  <div class="field">
-    <%= f.label :account_id %><br>
-    <%= f.number_field :account_id %>
+    <%= f.label :content,'内容' %><br>
+    <%= f.text_field :content, class: 'form-control' %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit '提交', class: 'btn btn-default'%>
   </div>
 <% end %>

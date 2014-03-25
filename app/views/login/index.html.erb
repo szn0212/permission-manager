@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PermissionManager</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="container">
+    <div class="col-md-4 col-md-offset-4" style="padding-top: 100px;">
+      <% if flash[:error] %>
+        <div class="alert alert-danger"><%= flash[:error] %></div>
+      <% end %>
+      
+      <%= form_tag 'index' do %>
+        <div class="form-group">
+          <label for="account_username">用户名</label><br>
+          <input id="account_username" name="username" class="form-control"/>
+        </div>
+        <div class="form-group">
+          <label for="account_password">密码</label><br>
+          <input id="account_password" name="password" class="form-control" type="password"/>
+        </div>
+        <div class="actions">
+         <input type="submit" value="登录" class="btn btn-default"/>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</body>
+</html>

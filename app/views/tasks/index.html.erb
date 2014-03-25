@@ -1,3 +1,6 @@
+<% if flash[:info] %>
+<div class="alert alert-success alert-dismissable"><%= flash[:info] %></div>
+<% end %>
 <h1>任务列表</h1>
 
 <table class="table">
@@ -14,9 +17,11 @@
     <% @tasks.each do |task| %>
       <tr>
         <td><%= task.content %></td>
-        <td><%= link_to '详情', task %></td>
+        <td></td>
         <td><%= link_to '编辑', edit_task_path(task) %></td>
-        <td><%= link_to '删除', task, method: :delete, data: { confirm: '你确定要删除吗？' } %></td>
+        <td>
+          <%= link_to '删除', task, method: :delete, data: { confirm: '你确定要删除吗？' } %>
+        </td>
       </tr>
     <% end %>
   </tbody>
