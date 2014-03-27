@@ -1,19 +1,19 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Action:</strong>
+  <strong>操作:</strong>
   <%= @permission.action %>
 </p>
 
 <p>
-  <strong>Subject:</strong>
+  <strong>资源:</strong>
   <%= @permission.subject %>
 </p>
 
 <p>
-  <strong>Description:</strong>
+  <strong>描述:</strong>
   <%= @permission.description %>
 </p>
 
-<%= link_to 'Edit', edit_permission_path(@permission) %> |
-<%= link_to 'Back', permissions_path %>
+<%= link_to '编辑', edit_permission_path(@permission) %> |
+<%= link_to '返回', permissions_path %>

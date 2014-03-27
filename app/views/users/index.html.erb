@@ -1,11 +1,10 @@
-<h1>Listing users</h1>
+<h1>用户资料</h1>
 
-<table>
+<table class="table table-hover">
   <thead>
     <tr>
-      <th>Account</th>
-      <th>Nickname</th>
-      <th>Sex</th>
+      <th>昵称</th>
+      <th>性别</th>
       <th></th>
       <th></th>
       <th></th>
@@ -15,12 +14,23 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.account_id %></td>
         <td><%= user.nickname %></td>
-        <td><%= user.sex %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= user.sex == 1 ? '男' : '女' %></td>
+        <td>
+          <% if can? :read, user %>
+          <%= link_to '查看', user %>
+          <% end %>
+        </td>
+        <td>
+          <% if can? :update, user %>
+          <%= link_to '编辑', edit_user_path(user) %>
+          <% end %>
+        </td>
+        <td>
+          <% if can? :destroy, user %>
+          <%= link_to '删除', user, method: :delete, data: { confirm: '你确定吗？' } %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +38,6 @@
 
 <br>
 
-<%= link_to 'New User', new_user_path %>
+<% if can? :create, User %>
+<%= link_to '新建用户', new_user_path %>
+<% end %>

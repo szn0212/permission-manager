@@ -1,4 +1,5 @@
 class RolesController < ApplicationController
+  authorize_resource :role
   before_action :set_role, only: [:show, :edit, :update, :destroy]
 
   # GET /roles
@@ -10,6 +11,7 @@ class RolesController < ApplicationController
   # GET /roles/1
   # GET /roles/1.json
   def show
+    @permissions = Permission.all
   end
 
   # GET /roles/new
@@ -59,6 +61,19 @@ class RolesController < ApplicationController
       format.html { redirect_to roles_url }
       format.json { head :no_content }
     end
+  end
+
+  def assign_permissions
+    role_id = params[:role_id]
+    news = params[:news].split(',')
+    news.each do |n|
+      RolePermission.create(role_id: role_id, permission_id: n)
+    end
+    deleteds = params[:deleteds].split(',')
+    deleteds.each do |d|
+      RolePermission.destroy_all ['role_id = ? and permission_id = ?', role_id, d]
+    end
+    render text: '操作成功'
   end
 
   private

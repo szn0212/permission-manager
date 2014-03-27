@@ -12,18 +12,17 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :account_id %><br>
-    <%= f.number_field :account_id %>
+    <%= f.label :nickname,'用户昵称' %><br>
+    <%= f.text_field :nickname, class: 'form-control' %>
   </div>
   <div class="field">
-    <%= f.label :nickname %><br>
-    <%= f.text_field :nickname %>
-  </div>
-  <div class="field">
-    <%= f.label :sex %><br>
-    <%= f.number_field :sex %>
+    <%= f.label :sex,'性别' %><br>
+    <%= f.radio_button :sex, 1%>
+    <%= label_tag :user_sex_1, "男" %>
+    <%= f.radio_button :sex, 0%>
+    <%= label_tag :user_sex_0, "女" %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit '提交', class: 'btn btn-default' %>
   </div>
 <% end %>

@@ -12,10 +12,10 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.label :name, '角色名' %><br>
+    <%= f.text_field :name, class: 'form-control' %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit '提交', class: 'btn btn-default' %>
   </div>
 <% end %>

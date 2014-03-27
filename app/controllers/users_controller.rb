@@ -11,6 +11,8 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @roles = Role.all
+    @permissions = Permission.all.order('subject desc')
   end
 
   # GET /users/new

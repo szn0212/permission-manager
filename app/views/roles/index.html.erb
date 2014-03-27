@@ -1,9 +1,9 @@
-<h1>Listing roles</h1>
+<h1>用户角色</h1>
 
-<table>
+<table class="table table-hover">
   <thead>
     <tr>
-      <th>Name</th>
+      <th>角色名</th>
       <th></th>
       <th></th>
       <th></th>
@@ -14,9 +14,9 @@
     <% @roles.each do |role| %>
       <tr>
         <td><%= role.name %></td>
-        <td><%= link_to 'Show', role %></td>
-        <td><%= link_to 'Edit', edit_role_path(role) %></td>
-        <td><%= link_to 'Destroy', role, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '查看', role %></td>
+        <td><%= link_to '编辑', edit_role_path(role) %></td>
+        <td><%= link_to '删除', role, method: :delete, data: { confirm: '你确定吗？' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +24,4 @@
 
 <br>
 
-<%= link_to 'New Role', new_role_path %>
+<%= link_to '新建角色', new_role_path %>

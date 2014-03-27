@@ -1,9 +1,30 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @role.name %>
+<p class="h1">
+    <%= @role.name %> 拥有的权限
 </p>
 
-<%= link_to 'Edit', edit_role_path(@role) %> |
-<%= link_to 'Back', roles_path %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>描述</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @permissions.each do |permission| %>
+      <tr>
+        <td><%= permission.description %></td>
+        <td>
+          <input name="assign_role" type="checkbox" <%= role_has_permission(permission) %> permission_id="<%= permission.id %>"/>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<input id="btnAssignPermission" type="button" value="提交更改" class="btn btn-default" role_id="<%= @role.id %>"/>
+<br /><br />
+<%= link_to '编辑', edit_role_path(@role) %> |
+<%= link_to '返回', roles_path %>

@@ -1,19 +1,60 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Account:</strong>
-  <%= @user.account_id %>
-</p>
+<div class="panel panel-default">
+    <div class="panel-heading">用户基本资料</div>
+    <div class="panel-body">
+        <p>
+            <strong>昵称:</strong>
+            <%= @user.nickname %>
+        </p>
 
-<p>
-  <strong>Nickname:</strong>
-  <%= @user.nickname %>
-</p>
+        <p>
+            <strong>性别:</strong>
+            <%= sex_format @user.sex %>
+        </p>
+        <%= link_to '编辑', edit_user_path(@user) %>
+    </div>
+</div>
 
-<p>
-  <strong>Sex:</strong>
-  <%= @user.sex %>
-</p>
+<div class="panel panel-default">
+    <div class="panel-heading">用户角色</div>
+    <div class="panel-body">
+        <% @roles.each do |role| %>
+        <div class="col-md-2">
+            <%= check_box_tag "role_#{role.id}", role.id, user_has_role(role) %>
+            <%= label_tag "role_#{role.id}", role.name %>
+        </div>
+        <% end %>
+    </div>
+</div>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<div class="panel panel-default">
+    <div class="panel-heading">用户权限</div>
+    <div class="panel-body">
+        <% 
+            if @permissions.any?
+                old = @permissions.first.subject
+        %>
+        <div class="col-md-12"><strong><%= subject_name old %></strong></div>
+        <% end %>
+        <% @permissions.each do |permission| %>
+        <% 
+            if old != permission.subject
+                old = permission.subject
+        %>
+        <div class="col-md-12" style="margin-top: 20px">
+        <strong><%= subject_name permission.subject %></strong>
+        </div>
+        <% end %>
+        <div class="col-md-2">
+            <%= check_box_tag "assign_role_#{permission.id}", permission.id, user_has_permission(permission), name: 'assign_role' %>
+            <%= label_tag "assign_role_#{permission.id}", permission.description  %>
+        </div>
+        <% end %>
+    </div>
+
+</div>
+
+<input type="button" class="btn btn-default" value="提交更改"/>
+<br />
+<%= link_to '返回', users_path %>

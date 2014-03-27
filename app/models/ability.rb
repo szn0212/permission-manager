@@ -7,6 +7,9 @@ class Ability
             can permission.action.to_sym, permission.subject.constantize
         end
     end
+    user.permissions.each do |permission|
+        can permission.action.to_sym, permission.subject.constantize
+    end
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)
