@@ -76,6 +76,16 @@ class RolesController < ApplicationController
     render text: '操作成功'
   end
 
+  def permissions
+      ids = params[:ids].split(",")
+      roles = Role.find(ids)
+      permissions = []
+      roles.each do |role|
+          permissions.concat role.permissions
+      end
+      render json: permissions
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_role

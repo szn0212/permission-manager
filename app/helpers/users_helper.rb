@@ -14,9 +14,6 @@ module UsersHelper
         @user.account.roles.each do |r|
             r.permissions.each { |p| return true if p.id == permission.id}
         end
-        @user.account.permissions.each do |p|
-            return true if p.id == permission.id
-        end
         false
     end
 end

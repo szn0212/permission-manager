@@ -8,6 +8,8 @@ module PermissionsHelper
             return '权限'
         elsif subject == 'Role'
             return '角色'
+        else
+            return subject
         end
     end
 end

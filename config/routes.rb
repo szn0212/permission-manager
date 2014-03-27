@@ -9,8 +9,10 @@ PermissionManager::Application.routes.draw do
 
   resources :roles
   post "/roles/assign_permissions"
+  post "/roles/permissions" => 'roles#permissions'
 
   resources :users
+  post "/users/assign_roles" => 'users#assign_roles'
 
   resources :accounts
 

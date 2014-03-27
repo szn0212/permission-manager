@@ -21,7 +21,7 @@
     <div class="panel-body">
         <% @roles.each do |role| %>
         <div class="col-md-2">
-            <%= check_box_tag "role_#{role.id}", role.id, user_has_role(role) %>
+            <%= check_box_tag "role_#{role.id}", role.id, user_has_role(role), name: "role", role_id: role.id %>
             <%= label_tag "role_#{role.id}", role.name %>
         </div>
         <% end %>
@@ -32,29 +32,29 @@
     <div class="panel-heading">用户权限</div>
     <div class="panel-body">
         <% 
-            if @permissions.any?
-                old = @permissions.first.subject
+          if @permissions.any?
+            old = @permissions.first.subject
         %>
         <div class="col-md-12"><strong><%= subject_name old %></strong></div>
         <% end %>
         <% @permissions.each do |permission| %>
         <% 
-            if old != permission.subject
-                old = permission.subject
+          if old != permission.subject
+            old = permission.subject
         %>
         <div class="col-md-12" style="margin-top: 20px">
         <strong><%= subject_name permission.subject %></strong>
         </div>
         <% end %>
         <div class="col-md-2">
-            <%= check_box_tag "assign_role_#{permission.id}", permission.id, user_has_permission(permission), name: 'assign_role' %>
-            <%= label_tag "assign_role_#{permission.id}", permission.description  %>
+            <%= check_box_tag "permission_#{permission.id}", permission.id, user_has_permission(permission), name: 'permission', disabled: 'disabled'%>
+            <%= label_tag "permission_#{permission.id}", permission.description  %>
         </div>
         <% end %>
     </div>
 
 </div>
 
-<input type="button" class="btn btn-default" value="提交更改"/>
+<input type="button" class="btn btn-default" value="提交更改" id="btnAssignRolesToUser" user_id='<%= @user.id %>'/>
 <br />
 <%= link_to '返回', users_path %>

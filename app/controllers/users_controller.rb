@@ -64,6 +64,19 @@ class UsersController < ApplicationController
     end
   end
 
+  def assign_roles
+    user = User.find params[:user_id]
+    news = params[:news].split(",")
+    deleteds = params[:deleteds].split(",")
+    news.each do |n|
+        AccountRole.create account_id: user.account.id, role_id: n
+    end
+    deleteds.each do |n|
+        AccountRole.destroy_all ['account_id = ? and role_id = ?', user.account.id, n]
+    end
+    render text: '操作成功'
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
