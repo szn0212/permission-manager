@@ -16,6 +16,7 @@
     </div>
 </div>
 
+<% if can? :manage, Role %>
 <div class="panel panel-default">
     <div class="panel-heading">用户角色</div>
     <div class="panel-body">
@@ -52,9 +53,9 @@
         </div>
         <% end %>
     </div>
-
 </div>
-
 <input type="button" class="btn btn-default" value="提交更改" id="btnAssignRolesToUser" user_id='<%= @user.id %>'/>
+<% end %>
+
 <br />
 <%= link_to '返回', users_path %>
