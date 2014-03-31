@@ -2,11 +2,12 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    user.roles.each do |role|
-        role.permissions.each do |permission|
-            can permission.action.to_sym, permission.subject.constantize
-        end
-    end
+    can :manage, :all
+    #user.roles.each do |role|
+    #    role.permissions.each do |permission|
+    #        can permission.action.to_sym, permission.subject.constantize
+    #    end
+    #end
     #user.permissions.each do |permission|
     #    can permission.action.to_sym, permission.subject.constantize
     #end

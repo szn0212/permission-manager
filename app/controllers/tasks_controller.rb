@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  authorize_resource :task
+  #authorize_resource :task
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   # GET /tasks
