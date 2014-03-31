@@ -3,8 +3,8 @@ require 'spec_helper'
 describe TasksController do
 
     before :each do
-        account = create :account
-        allow(controller).to receive(:current_user) { account }
+        @account = create :account
+        allow(controller).to receive(:current_user) { @account }
     end
 
     describe "GET 'index'" do
@@ -41,7 +41,9 @@ describe TasksController do
         it "returns http success" do
             task = attributes_for :task
             get 'create', task: task
-            expect(response).to redirect_to(Task.find(task[:id]))
+            task = Task.find_by_id task[:id]
+            expect(task).not_to be_nil
+            expect(response).to redirect_to(task)
         end
     end
 
@@ -57,9 +59,10 @@ describe TasksController do
     end
 
     describe "DELETE 'destroy'" do
-        it "returns http success" do
+        it "delete the task record by id param" do
             task = create :task
             get :destroy, id: task.id
+            expect(Task.find_by_id task.id).to be_nil
             expect(response).to redirect_to(tasks_url)
         end
     end

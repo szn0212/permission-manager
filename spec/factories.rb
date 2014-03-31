@@ -7,5 +7,6 @@ FactoryGirl.define do
     factory :task do
         id '1'
         content 'Task A.'
+        account
     end
 end
