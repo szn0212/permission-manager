@@ -13,7 +13,7 @@ gem 'bootstrap-sass'
 
 gem 'activerecord-session_store'
 
-gem 'cancan'
+gem 'cancancan'
 
 gem 'pry'
 

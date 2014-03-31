@@ -3,8 +3,7 @@ require 'spec_helper'
 describe TasksController do
 
     before :each do
-        @account = create :account
-        allow(controller).to receive(:current_user) { @account }
+        session[:account] = create :account
     end
 
     describe "GET 'index'" do
