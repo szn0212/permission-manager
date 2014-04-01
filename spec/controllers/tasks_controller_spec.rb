@@ -39,7 +39,7 @@ describe TasksController do
     describe "GET 'create'" do
         it "returns http success" do
             task = attributes_for :task
-            get 'create', task: task
+            post 'create', task: task
             task = Task.find_by_id task[:id]
             expect(task).not_to be_nil
             expect(response).to redirect_to(task)
@@ -60,7 +60,7 @@ describe TasksController do
     describe "DELETE 'destroy'" do
         it "delete the task record by id param" do
             task = create :task
-            get :destroy, id: task.id
+            delete :destroy, id: task.id
             expect(Task.find_by_id task.id).to be_nil
             expect(response).to redirect_to(tasks_url)
         end
