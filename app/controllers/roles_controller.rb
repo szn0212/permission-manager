@@ -57,7 +57,9 @@ class RolesController < ApplicationController
     deleteds.each do |d|
       RolePermission.destroy_all ['role_id = ? and permission_id = ?', role_id, d]
     end
-    render text: '操作成功'
+    render json: {success: true, message: '操作成功'}
+  rescue Exception => e
+    render json: {success: false, message: '操作失败'}
   end
 
   def permissions

@@ -24,6 +24,8 @@ $ ->
         for p in deleted_permissions
             deleteds += p + ','
         $.post '/roles/assign_permissions', {
-                'news': news, 'deleteds': deleteds, 'role_id': role_id
-            }, (message) ->
-                showMessage(message)
+            'news': news, 'deleteds': deleteds, 'role_id': role_id
+        }, (data) ->
+            showMessage(data.message)
+            location.reload if !data.success
+        , 'json'
