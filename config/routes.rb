@@ -1,6 +1,6 @@
 PermissionManager::Application.routes.draw do
   get "login/index"
-  post "login/index"
+  post "login/login"
   get "login/logout"
 
   resources :tasks
