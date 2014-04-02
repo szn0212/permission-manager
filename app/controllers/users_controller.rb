@@ -57,12 +57,14 @@ class UsersController < ApplicationController
     news = params[:news].split(",")
     deleteds = params[:deleteds].split(",")
     news.each do |n|
-      AccountRole.create account_id: user.account.id, role_id: n
+      AccountRole.create! account_id: user.account.id, role_id: n
     end
     deleteds.each do |n|
-      AccountRole.destroy_all ['account_id = ? and role_id = ?', user.account.id, n]
+      AccountRole.delete_all ['account_id = ? and role_id = ?', user.account.id, n]
     end
-    render text: '操作成功'
+    render json: { success: true, message: '操作成功' }
+  rescue
+    render json: { success: false, message: '操作失败' }
   end
 
   private

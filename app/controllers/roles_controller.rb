@@ -57,9 +57,9 @@ class RolesController < ApplicationController
     deleteds.each do |d|
       RolePermission.destroy_all ['role_id = ? and permission_id = ?', role_id, d]
     end
-    render json: {success: true, message: '操作成功'}
+    render json: { success: true, message: '操作成功'}
   rescue Exception => e
-    render json: {success: false, message: '操作失败'}
+    render json: { success: false, message: '操作失败'}
   end
 
   def permissions
@@ -69,7 +69,7 @@ class RolesController < ApplicationController
     roles.each do |role|
       permissions.concat role.permissions
     end
-    render json: permissions
+    render json: { success: true, permissions: permissions }
   end
 
   private
