@@ -22,28 +22,28 @@ admin = Role.new(name: 'admin')
 manager = Role.new(name: 'manager')
 employee = Role.new(name: 'employee')
 
-permission = Permission.new(action: 'manage', subject: 'Permission', description: '管理权限')
+permission = Permission.new(action: 'access', subject: 'permissions', description: '管理权限')
 admin.permissions << permission
-permission = Permission.new(action: 'manage', subject: 'Role', description: '管理角色')
+permission = Permission.new(action: 'access', subject: 'roles', description: '管理角色')
 admin.permissions << permission
 
-permission = Permission.new(action: 'manage', subject: 'Task', description: '管理任务')
+permission = Permission.new(action: 'access', subject: 'tasks', description: '管理任务')
 admin.permissions << permission
 manager.permissions << permission
 employee.permissions << permission
 
-permission = Permission.new(action: 'manage', subject: 'User', description: '管理用户')
+permission = Permission.new(action: 'access', subject: 'users', description: '管理用户')
 admin.permissions << permission
 manager.permissions << permission
 
-permission = Permission.new(action: 'read', subject: 'User', description: '查看用户')
+permission = Permission.new(action: 'read', subject: 'users', description: '查看用户')
 employee.permissions << permission
 
 admin.save
 manager.save
 employee.save
 
-permission = Permission.new(action: 'update', subject: 'User', description: '编辑用户')
+permission = Permission.new(action: 'update', subject: 'users', description: '编辑用户')
 account_allen.permissions << permission
 
 account_admin.roles << admin

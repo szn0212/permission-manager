@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_filter :check_login
   enable_authorization do |exception|
     render status: 403, text: '您没有权限访问这个页面'
-  end
+  end unless :login_controller?
 
   private
   def current_user

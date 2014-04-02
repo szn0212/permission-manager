@@ -14,20 +14,20 @@
     <div class="container">
 
       <ul class="nav navbar-nav">
-        <% if can? :read, User %>
+        <% if can? :read, :users %>
         <li class="<%= active_class('users') %>"><a href="/users">管理用户</a></li>
         <% end %>
-        <% if can? :read, Task%>
+        <% if can? :read, :tasks%>
         <li class="<%= active_class('tasks') %>">
           <a href="/tasks">管理任务</a>
         </li>
         <% end %>
-        <% if can? :read, Role %>
+        <% if can? :read, :roles %>
         <li class="<%= active_class('roles') %>">
           <a href="/roles">管理角色</a>
         </li>
         <% end %>
-        <% if can? :read, Permission %>
+        <% if can? :read, :permissions %>
         <li class="<%= active_class('permissions') %>">
           <a href="/permissions">管理权限</a>
         </li>
