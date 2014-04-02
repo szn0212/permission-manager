@@ -53,6 +53,12 @@ FactoryGirl.define do
   end
 
   factory :permission do
+    sequence :id do |n|
+      n
+    end
+    action 'manage'
+    subject 'Task'
+    description '管理任务'
   end
 
   factory :task do
