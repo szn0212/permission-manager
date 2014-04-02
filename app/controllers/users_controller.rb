@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  authorize_resource :user
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users

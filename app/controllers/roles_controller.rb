@@ -1,5 +1,4 @@
 class RolesController < ApplicationController
-  authorize_resource :role
   before_action :set_role, only: [:show, :edit, :update, :destroy]
 
   # GET /roles

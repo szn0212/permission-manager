@@ -4,7 +4,7 @@ class Ability
   def initialize(user)
     user.roles.each do |role|
         role.permissions.each do |permission|
-            can permission.action.to_sym, permission.subject.constantize
+            can permission.action.to_sym, permission.subject.to_sym
         end
     end
     #user.permissions.each do |permission|

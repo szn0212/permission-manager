@@ -1,5 +1,4 @@
 class PermissionsController < ApplicationController
-  authorize_resource :permission
   before_action :set_permission, only: [:show, :edit, :update, :destroy]
 
   # GET /permissions
