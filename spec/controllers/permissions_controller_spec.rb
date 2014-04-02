@@ -3,9 +3,8 @@ require 'spec_helper'
 describe PermissionsController do
   before(:each) do
     session[:account] = create :account
-    ability = Object.new
-    ability.extend(CanCan::Ability)
-    ability.can :manage, :all
+    ability = Object.new.extend(CanCan::Ability)
+    ability.can :manage, Permission
     allow(controller).to receive(:current_ability).and_return(ability)
   end
 
