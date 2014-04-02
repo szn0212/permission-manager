@@ -10,7 +10,7 @@ $ ->
         params = "ids=" + ids
         $.post '/roles/permissions', params, (data) ->
             $("input[name=permission]").prop('checked',false)
-            for p in data
+            for p in data.permissions
                 $("#permission_"+p.id).prop('checked',true)
         ,'json'
 
@@ -30,5 +30,7 @@ $ ->
         params = {
             'news': news, 'deleteds': deleteds, 'user_id': user_id
         }
-        $.post '/users/assign_roles', params, (message) ->
-            showMessage(message)
+        $.post '/users/assign_roles', params, (data) ->
+            showMessage(data.message)
+            location.reload if !data.success
+        ,'json'
