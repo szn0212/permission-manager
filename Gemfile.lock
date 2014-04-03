@@ -1,3 +1,10 @@
+GIT
+  remote: git@github.com:huaoguo/cancancan.git
+  revision: bda272758fc142be3ac7ce6667fc559a1876c2b8
+  branch: develop
+  specs:
+    cancancan (1.7.1)
+
 GEM
   remote: http://ruby.taobao.org/
   specs:
@@ -34,7 +41,6 @@ GEM
     bootstrap-sass (3.1.1.0)
       sass (~> 3.2)
     builder (3.1.4)
-    cancancan (1.7.1)
     coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -151,7 +157,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord-session_store
   bootstrap-sass
-  cancancan
+  cancancan!
   coffee-rails (~> 4.0.0)
   factory_girl_rails
   jbuilder (~> 1.2)
