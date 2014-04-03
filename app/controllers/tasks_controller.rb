@@ -25,7 +25,7 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     @task.account_id = current_user.id
     if @task.save
-      redirect_to @task, notice: 'Task was successfully created.'
+      redirect_to @task, notice: '任务已成功创建。'
     else
       render action: 'new'
     end
@@ -34,7 +34,7 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1
   def update
     if @task.update(task_params)
-      redirect_to @task, notice: 'Task was successfully updated.'
+      redirect_to @task, notice: '任务已成功更新。'
     else
       render action: 'edit'
     end

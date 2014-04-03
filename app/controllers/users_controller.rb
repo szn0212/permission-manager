@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      redirect_to @user, notice: 'User was successfully created.'
+      redirect_to @user, notice: '用户已成功创建。'
     else
       render action: 'new'
     end
@@ -39,7 +39,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   def update
     if @user.update(user_params)
-      redirect_to @user, notice: 'User was successfully updated.'
+      redirect_to @user, notice: '用户已成功更新。'
     else
       render action: 'edit'
     end
@@ -56,15 +56,17 @@ class UsersController < ApplicationController
     user = User.find params[:user_id]
     news = params[:news].split(",")
     deleteds = params[:deleteds].split(",")
-    news.each do |n|
-      AccountRole.create! account_id: user.account.id, role_id: n
+    AccountRole.transaction do
+      news.each do |n|
+        AccountRole.create! account_id: user.account.id, role_id: n
+      end
+      deleteds.each do |n|
+        AccountRole.delete_all ['account_id = ? and role_id = ?', user.account.id, n]
+      end
     end
-    deleteds.each do |n|
-      AccountRole.delete_all ['account_id = ? and role_id = ?', user.account.id, n]
-    end
-    render json: { success: true, message: '操作成功' }
+    render json: { success: true, message: '角色分配成功' }
   rescue
-    render json: { success: false, message: '操作失败' }
+    render json: { success: false, message: '角色分配失败' }
   end
 
   private

@@ -25,7 +25,7 @@ class PermissionsController < ApplicationController
     @permission = Permission.new(permission_params)
 
     if @permission.save
-      redirect_to @permission, notice: 'Permission was successfully created.'
+      redirect_to @permission, notice: '权限已成功创建。'
     else
       render action: 'new'
     end
@@ -34,7 +34,7 @@ class PermissionsController < ApplicationController
   # PATCH/PUT /permissions/1
   def update
     if @permission.update(permission_params)
-      redirect_to @permission, notice: 'Permission was successfully updated.'
+      redirect_to @permission, notice: '权限已成功更新。'
     else
       render action: 'edit'
     end
