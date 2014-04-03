@@ -59,9 +59,9 @@ class RolesController < ApplicationController
         RolePermission.destroy_all ['role_id = ? and permission_id = ?', role_id, d]
       end
     end
-    render json: { success: true, message: '权限分配成功'}
+    render json: { success: true, message: '权限分配成功' }
   rescue Exception => e
-    render json: { success: false, message: '权限分配失败'}
+    render json: { success: false, message: '权限分配失败' }
   end
 
   def permissions
