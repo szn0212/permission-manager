@@ -19,7 +19,7 @@ describe TasksController do
   describe "GET 'show'" do
     it "returns http success" do
       task = create :task
-      get 'show',id: task.id
+      get 'show', id: task.id
       expect(response).to be_success
     end
   end
@@ -34,7 +34,7 @@ describe TasksController do
   describe "GET 'edit'" do
     it "returns http success" do
       task = create :task
-      get 'edit',id: task.id
+      get 'edit', id: task.id
       expect(response).to be_success
     end
   end
@@ -53,7 +53,7 @@ describe TasksController do
     it "returns http success" do
       task = create :task
       task.content = 'Task A - 1.'
-      post 'update',id: task.id, task: task.attributes
+      post 'update', id: task.id, task: task.attributes
       task_updated = Task.find task.id
       expect(task_updated.content).to eq(task.content)
       expect(response).to redirect_to(task)

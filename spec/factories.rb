@@ -66,4 +66,11 @@ FactoryGirl.define do
     content 'Task A.'
     account
   end
+
+  factory :user do
+    id '1'
+    nickname 'Admin'
+    sex 1
+    account
+  end
 end
