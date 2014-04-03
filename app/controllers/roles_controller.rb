@@ -49,8 +49,8 @@ class RolesController < ApplicationController
 
   def assign_permissions
     role_id = params[:role_id]
-    news = params[:news].split(',')
     RolePermission.transaction do
+      news = params[:news].split(',')
       news.each do |n|
         RolePermission.create!(role_id: role_id, permission_id: n)
       end

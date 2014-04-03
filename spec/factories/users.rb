@@ -10,14 +10,13 @@
 #  updated_at :datetime
 #
 
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# Read about factories at https://github.com/thoughtbot/factory_girl
 
-one:
-  account_id: 1
-  nickname: MyString
-  sex: 1
-
-two:
-  account_id: 1
-  nickname: MyString
-  sex: 1
+FactoryGirl.define do
+  factory :user do
+    id '1'
+    nickname 'Allen'
+    sex 1
+    account
+  end
+end
