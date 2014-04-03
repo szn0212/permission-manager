@@ -52,7 +52,7 @@ class RolesController < ApplicationController
     news = params[:news].split(',')
     RolePermission.transaction do
       news.each do |n|
-        RolePermission.create(role_id: role_id, permission_id: n)
+        RolePermission.create!(role_id: role_id, permission_id: n)
       end
       deleteds = params[:deleteds].split(',')
       deleteds.each do |d|
