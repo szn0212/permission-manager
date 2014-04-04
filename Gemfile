@@ -6,6 +6,8 @@ gem 'rails', '4.0.2'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
+gem 'annotate'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
@@ -13,7 +15,7 @@ gem 'bootstrap-sass'
 
 gem 'activerecord-session_store'
 
-gem 'cancancan'
+gem 'cancancan', :git => 'git@github.com:huaoguo/cancancan.git', :branch => 'develop'
 
 gem 'pry'
 
@@ -42,6 +44,7 @@ end
 
 group :development, :test do
     gem 'rspec-rails', '~> 3.0.0.beta'
+    gem 'shoulda-matchers'
     gem 'factory_girl_rails'
 end
 

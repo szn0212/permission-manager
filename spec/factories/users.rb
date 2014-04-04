@@ -10,10 +10,13 @@
 #  updated_at :datetime
 #
 
-class User < ActiveRecord::Base
-    belongs_to :account
+# Read about factories at https://github.com/thoughtbot/factory_girl
 
-    validates :nickname, :sex, presence: true, uniqueness: true
-    validates :nickname, length: { minimum: 1, maximum: 10 }
-    validates :sex, inclusion: { in: [1,0] }
+FactoryGirl.define do
+  factory :user do
+    id '1'
+    nickname 'Allen'
+    sex 1
+    account
+  end
 end

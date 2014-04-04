@@ -26,7 +26,7 @@ class RolesController < ApplicationController
     @role = Role.new(role_params)
 
     if @role.save
-      redirect_to @role, notice: 'Role was successfully created.'
+      redirect_to @role, notice: '角色已成功创建。'
     else
       render action: 'new'
     end
@@ -35,7 +35,7 @@ class RolesController < ApplicationController
   # PATCH/PUT /roles/1
   def update
     if @role.update(role_params)
-      redirect_to @role, notice: 'Role was successfully updated.'
+      redirect_to @role, notice: '角色已成功更新。'
     else
       render action: 'edit'
     end
@@ -49,17 +49,19 @@ class RolesController < ApplicationController
 
   def assign_permissions
     role_id = params[:role_id]
-    news = params[:news].split(',')
-    news.each do |n|
-      RolePermission.create(role_id: role_id, permission_id: n)
+    RolePermission.transaction do
+      news = params[:news].split(',')
+      news.each do |n|
+        RolePermission.create!(role_id: role_id, permission_id: n)
+      end
+      deleteds = params[:deleteds].split(',')
+      deleteds.each do |d|
+        RolePermission.destroy_all ['role_id = ? and permission_id = ?', role_id, d]
+      end
     end
-    deleteds = params[:deleteds].split(',')
-    deleteds.each do |d|
-      RolePermission.destroy_all ['role_id = ? and permission_id = ?', role_id, d]
-    end
-    render json: { success: true, message: '操作成功'}
+    render json: { success: true, message: '权限分配成功' }
   rescue Exception => e
-    render json: { success: false, message: '操作失败'}
+    render json: { success: false, message: '权限分配失败' }
   end
 
   def permissions
