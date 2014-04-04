@@ -2,10 +2,7 @@ require 'spec_helper'
 
 describe RolesController do
   before :each do
-    session[:account] = create :account
-    ability = Object.new.extend(CanCan::Ability)
-    ability.can :manage, Role
-    allow(controller).to receive(:current_ability).and_return(ability)
+    cancan_config Role
   end
 
   describe "GET 'index'" do

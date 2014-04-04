@@ -2,10 +2,7 @@ require 'spec_helper'
 
 describe PermissionsController do
   before(:each) do
-    session[:account] = create :account
-    ability = Object.new.extend(CanCan::Ability)
-    ability.can :manage, Permission
-    allow(controller).to receive(:current_ability).and_return(ability)
+    cancan_config Permission
   end
 
   describe "GET 'index'" do

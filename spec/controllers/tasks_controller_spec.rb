@@ -3,10 +3,7 @@ require 'spec_helper'
 describe TasksController do
 
   before :each do
-    session[:account] = create :account
-    ability = Object.new.extend(CanCan::Ability)
-    ability.can :manage, Task
-    allow(controller).to receive(:current_ability).and_return(ability)
+    cancan_config Task
   end
 
   describe "GET 'index'" do

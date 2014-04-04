@@ -2,10 +2,7 @@ require 'spec_helper'
 
 describe UsersController do
   before :each do
-    session[:account] = create :account
-    ability = Object.new.extend(CanCan::Ability)
-    ability.can :manage, User
-    allow(controller).to receive(:current_ability).and_return(ability)
+    cancan_config User
   end
 
   describe "GET 'index'" do
