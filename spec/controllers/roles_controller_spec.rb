@@ -74,7 +74,7 @@ describe RolesController do
           post 'assign_permissions', role_id: role_manager.id, news: "", deleteds: "#{role_manager.permissions.first.id},"
         }.to change(RolePermission, :count).by(-1)
         expect(response).to be_success
-        expect(response.body).to match(/true/)
+        expect(json_success).to eq(true)
       end
     end
 
@@ -85,7 +85,7 @@ describe RolesController do
           post 'assign_permissions', role_id: role_manager.id, news: nil, deleteds: "#{role_manager.permissions.first.id},"
         }.to change(RolePermission, :count).by(0)
         expect(response).to be_success
-        expect(response.body).to match(/false/)
+        expect(json_success).to eq(false)
       end
     end
   end
@@ -97,7 +97,7 @@ describe RolesController do
       ids = "#{role_manager.id},#{role_normal.id},"
       get 'permissions', ids: ids
       expect(response).to be_success
-      expect(response.body).to match(/true/)
+      expect(json_success).to eq(true)
       role_manager.permissions.each do |p|
         expect(response.body).to match p.description
       end

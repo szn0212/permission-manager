@@ -75,7 +75,7 @@ describe UsersController do
           post 'assign_roles', user_id: user.id, news: "#{role_manager.id},", deleteds: ""
         }.to change(AccountRole, :count).by(1)
         expect(response).to be_success
-        expect(response.body).to match(/true/)
+        expect(json_success).to eq(true)
       end
     end
 
@@ -88,7 +88,7 @@ describe UsersController do
           post 'assign_roles', news: "#{role_manager.id},", deleteds: ""
         }.to change(AccountRole, :count).by(0)
         expect(response).to be_success
-        expect(response.body).to match(/false/)
+        expect(json_success).to eq(false)
       end
     end
   end

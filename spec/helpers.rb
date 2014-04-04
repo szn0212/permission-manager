@@ -5,4 +5,8 @@ module Helpers
     ability.can :manage, resource
     allow(controller).to receive(:current_ability).and_return(ability)
   end
+
+  def json_success
+    JSON.parse(response.body)['success']
+  end
 end
