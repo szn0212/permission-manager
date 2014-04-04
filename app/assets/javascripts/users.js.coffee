@@ -25,6 +25,7 @@ $ ->
             role_id = $(this).attr('role_id')
             old = $(this).attr('old-checked')
             now = $(this).prop('checked')
+            return if old == now.toString()
             news += role_id + ',' if now
             deleteds += role_id + ',' if !now
         params = {

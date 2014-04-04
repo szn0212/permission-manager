@@ -5,27 +5,25 @@
 $ ->
     checkboxes = $("input[name=assign_role]")
     checkboxes.each ->
-        $(this).attr('old-checked',$(this).attr('checked'))
+        $(this).attr('old-checked',$(this).prop('checked'))
     role_id = $("#btnAssignPermission").attr('role_id')
     $("#btnAssignPermission").click ->
-        new_permissions = []
-        deleted_permissions = []
+        news = ""
+        deleteds = ""
         checkboxes.each ->
             permission_id = $(this).attr('permission_id')
             old = $(this).attr('old-checked')
-            now = if this.checked then 'checked' else undefined
-            return if old == now
-            deleted_permissions.push(permission_id) if old == 'checked'
-            new_permissions.push(permission_id) if now == 'checked'
-        news = ''
-        deleteds = ''
-        for p in new_permissions
-            news += p + ','
-        for p in deleted_permissions
-            deleteds += p + ','
+            now = $(this).prop('checked')
+            return if old == now.toString()
+            news += permission_id + ',' if now
+            deleteds += permission_id + ',' if !now
         $.post '/roles/assign_permissions', {
             'news': news, 'deleteds': deleteds, 'role_id': role_id
         }, (data) ->
             showMessage(data.message)
-            location.reload if !data.success
+            if data.success
+                checkboxes.each ->
+                    $(this).attr('old-checked',$(this).prop('checked'))
+            else
+                location.reload
         , 'json'
