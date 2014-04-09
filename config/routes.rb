@@ -1,4 +1,7 @@
 PermissionManager::Application.routes.draw do
+  get "codes" => 'codes#index'
+  get "codes/setup/username" => 'codes#setup_username'
+  post "codes/setup/repositories" => 'codes#setup_repositories'
   root 'tasks#index'
   get "login/index"
   post "login/login"

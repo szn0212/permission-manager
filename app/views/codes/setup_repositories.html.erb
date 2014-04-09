@@ -1,0 +1,8 @@
+<div class='h4'>选择想要跟踪的项目</div>
+<ul class="list-group">
+<% for repo in @repos %>
+    <li class="list-group-item">
+    <%= repo.name %>
+    </li>
+<% end %>
+</ul>
